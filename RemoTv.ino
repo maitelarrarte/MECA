@@ -1,14 +1,14 @@
-// Motor A connections
-int enA = 11; //ABIADURA
-int in1 = 12; //AURREA
-int in2 = 13; //ATZEA
-// Motor B connections
-int enB = 10;
-int in3 = 8;
-int in4 = 7;
+// Motor A connections izquierdo
+int enA = 11; // velocidad
+int in1 = 12; // aurrera
+int in2 = 13; // atzera
+// Motor B connections derecho
+int enB = 10; // velocidad
+int in3 = 8; // aurrera
+int in4 = 7; // atzera
 
 
-int incomingByte = 0; // for incoming serial data INPUT
+int incomingByte = 0; // for incoming serial data
 
 
 void setup() {
@@ -18,15 +18,17 @@ void setup() {
   // Set all the motor control pins to outputs
   pinMode(enA, OUTPUT);
   pinMode(enB, OUTPUT);
+
   
   pinMode(in1, OUTPUT);
   pinMode(in2, OUTPUT);
   pinMode(in3, OUTPUT);
   pinMode(in4, OUTPUT);
+
   
-  pinMode(22, OUTPUT); // añadido
-  pinMode(23, OUTPUT); // añadido
-  pinMode(24, OUTPUT); // añadido
+  pinMode(22, OUTPUT); // LED
+  pinMode(23, OUTPUT); // LED
+  pinMode(24, OUTPUT); // LED
 
    digitalWrite(22, HIGH); // añadido
    digitalWrite(23, HIGH); // añadido
@@ -37,6 +39,7 @@ void setup() {
   digitalWrite(in2, LOW);
   digitalWrite(in3, LOW);
   digitalWrite(in4, LOW);
+
 }
 
 
@@ -55,52 +58,56 @@ void loop() {
 
   
   if (incomingByte == 'f') {  // añadido en lugar de 8
-  // Forward A & B & C & D
+  // Forward A & B (MECA aurrera)
   digitalWrite(in1, HIGH);
   digitalWrite(in2, LOW);
   
-  digitalWrite(in3, LOW);
-  digitalWrite(in4, HIGH);
-
+  digitalWrite(in3, HIGH);
+  digitalWrite(in4, LOW);
+  
+ 
   delay(10);
   digitalWrite(22, LOW); // añadido
   delay(3000); // añadido
   }
 
    if (incomingByte == 'b') {
-  // Backwards A & B & C & D
+  // Backwards A & B (MECA atzera)
   digitalWrite(in1, LOW);
   digitalWrite(in2, HIGH);
   
-  digitalWrite(in3, HIGH);
-  digitalWrite(in4, LOW);
+  digitalWrite(in3, LOW);
+  digitalWrite(in4, HIGH);
   
+ 
   delay(10);
   digitalWrite(23, LOW); // añadido
   delay(3000); // añadido
   }
 
-   if (incomingByte == 'r') {
-  // Left A & B & C & D
+   if (incomingByte == 'l') {
+  // Left A & B (MECA izquierda)
   digitalWrite(in1, LOW);
   digitalWrite(in2, HIGH);
   
   digitalWrite(in3, HIGH);
   digitalWrite(in4, LOW);
   
+
   delay(10);
   digitalWrite(24, LOW); // añadido
   delay(3000); // añadido
   }
 
-  if (incomingByte == 'l') {
-  // Right A & B & C & D
+  if (incomingByte == 'r') {
+  // Right A & B (MECA derecha)
   digitalWrite(in1, HIGH);
   digitalWrite(in2, LOW);
   
   digitalWrite(in3, LOW);
   digitalWrite(in4, HIGH);
   
+
   delay(10);
   }
 
@@ -111,6 +118,7 @@ void loop() {
   
   digitalWrite(in3, LOW);
   digitalWrite(in4, LOW);
+
 
   delay(10);
   }
@@ -145,3 +153,4 @@ void speedControl() {
   digitalWrite(in3, LOW);
   digitalWrite(in4, LOW);
 }*/
+
