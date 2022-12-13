@@ -67,9 +67,11 @@ void loop() {
   
  
   delay(10);
-  digitalWrite(22, LOW); // añadido
-  delay(3000); // añadido
+  for(int i=255; i>0; i=i-1){  
+  analogWrite(22, i); // añadido
+  delay(300); // añadido
   }
+  }  
 
    if (incomingByte == 'b') {
   // Backwards A & B (MECA atzera)
@@ -81,8 +83,10 @@ void loop() {
   
  
   delay(10);
-  digitalWrite(23, LOW); // añadido
-  delay(3000); // añadido
+  for(int i=255; i>0; i=i-1){  
+  analogWrite(23, i); // añadido
+  delay(300); // añadido
+  }
   }
 
    if (incomingByte == 'l') {
@@ -95,8 +99,10 @@ void loop() {
   
 
   delay(10);
-  digitalWrite(24, LOW); // añadido
-  delay(3000); // añadido
+  for(int i=255; i>0; i=i-1){  
+  analogWrite(24, i); // añadido
+  delay(300); // añadido
+  }
   }
 
   if (incomingByte == 'r') {
