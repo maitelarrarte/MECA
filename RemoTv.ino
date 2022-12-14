@@ -11,8 +11,8 @@ int in4 = 7; // atzera
 int incomingByte = 0; // for incoming serial data
 
 
-void setup() {
-
+void setup() 
+{
   Serial.begin(9600); // opens serial port, sets data rate to 9600 bps
 
   // Set all the motor control pins to outputs
@@ -44,8 +44,8 @@ void setup() {
 
 
 
-void loop() {
-
+void loop() 
+{
    if (Serial.available() > 0) {
     // read the incoming byte:
     incomingByte = Serial.read();
@@ -126,7 +126,10 @@ void loop() {
   digitalWrite(in4, LOW);
 
 
-  delay(10);
+  if (incomingByte == '6') {
+  digitalWrite(22, HIGH); // añadido
+  digitalWrite(23, HIGH); // añadido
+  digitalWrite(24, HIGH); // añadido
   }
    }}
 /*
