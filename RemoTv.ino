@@ -65,6 +65,9 @@ void loop()
   digitalWrite(in3, HIGH);
   digitalWrite(in4, LOW);
   
+   digitalWrite(22, HIGH); // añadido
+   digitalWrite(23, HIGH); // añadido
+   digitalWrite(24, HIGH); // añadido
  
   delay(10);
   digitalWrite(22, LOW);
@@ -79,7 +82,10 @@ void loop()
   digitalWrite(in3, LOW);
   digitalWrite(in4, HIGH);
   
- 
+    digitalWrite(22, HIGH); // añadido
+   digitalWrite(23, HIGH); // añadido
+   digitalWrite(24, HIGH); // añadido
+
   delay(10);
   digitalWrite(23, LOW);
   
@@ -93,6 +99,9 @@ void loop()
   digitalWrite(in3, HIGH);
   digitalWrite(in4, LOW);
   
+   digitalWrite(22, HIGH); // añadido
+   digitalWrite(23, HIGH); // añadido
+   digitalWrite(24, HIGH); // añadido
 
   delay(10);
   digitalWrite(24, LOW);
@@ -105,11 +114,14 @@ void loop()
   
   digitalWrite(in3, LOW);
   digitalWrite(in4, HIGH);
-  
+
+   digitalWrite(22, HIGH); // añadido
+   digitalWrite(23, HIGH); // añadido
+   digitalWrite(24, HIGH); // añadido  
 
   delay(10);
   digitalWrite(22, LOW);
-  digitalWrite(23, LOW);
+  digitalWrite(24, LOW);
   
    }
   if (incomingByte == '5') {
