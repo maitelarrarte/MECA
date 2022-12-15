@@ -67,10 +67,8 @@ void loop()
   
  
   delay(10);
-  for(int i=255; i>0; i=i-1){  
-  analogWrite(22, i); // añadido
-  delay(300); // añadido
-  }
+  digitalWrite(22, LOW);
+  
   }  
 
    if (incomingByte == 'b') {
@@ -83,10 +81,8 @@ void loop()
   
  
   delay(10);
-  for(int i=255; i>0; i=i-1){  
-  analogWrite(23, i); // añadido
-  delay(300); // añadido
-  }
+  digitalWrite(23, LOW);
+  
   }
 
    if (incomingByte == 'l') {
@@ -99,10 +95,7 @@ void loop()
   
 
   delay(10);
-  for(int i=255; i>0; i=i-1){  
-  analogWrite(24, i); // añadido
-  delay(300); // añadido
-  }
+  digitalWrite(24, LOW);
   }
 
   if (incomingByte == 'r') {
@@ -115,8 +108,10 @@ void loop()
   
 
   delay(10);
-  }
-
+  digitalWrite(22, LOW);
+  digitalWrite(23, LOW);
+  
+   }
   if (incomingByte == '5') {
   // Turn off motors
   digitalWrite(in1, LOW);
@@ -124,14 +119,17 @@ void loop()
   
   digitalWrite(in3, LOW);
   digitalWrite(in4, LOW);
-
+  }
 
   if (incomingByte == '6') {
   digitalWrite(22, HIGH); // añadido
   digitalWrite(23, HIGH); // añadido
   digitalWrite(24, HIGH); // añadido
   }
-   }}
+  
+}}
+
+  
 /*
 //UNEDITED
 // This function lets you control speed of the motors
@@ -162,4 +160,3 @@ void speedControl() {
   digitalWrite(in3, LOW);
   digitalWrite(in4, LOW);
 }*/
-
