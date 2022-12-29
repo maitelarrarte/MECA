@@ -73,8 +73,3 @@ for i in np.arange(len(t)-1):
 plt.plot(x,y)
 plt.show()
 
-def funcion():
-  a=0.1
-  b=0.1
-  c=0.1
-  d=0.1
