@@ -1,1 +1,1 @@
-En esta carpeta se recogen las pruebas realizadas para la recogida de datos.
+En esta carpeta se encuentran los resultados de los sensores recogidos durante las pruebas.
