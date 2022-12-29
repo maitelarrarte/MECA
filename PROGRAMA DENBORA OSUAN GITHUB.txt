@@ -2,8 +2,7 @@
 #include <Arduino_LSM9DS1.h> // The library for 9-axis IMU, install "Arduino_LSM9DS1", docs https://www.arduino.cc/en/Reference/ArduinoLSM9DS1
 #include <Arduino_LPS22HB.h> // The library to read Pressure, install "Arduino_LPS22HB", docs https://www.arduino.cc/en/Reference/ArduinoLPS22HB
 #include <Arduino_HTS221.h> // The library to read Temperature and Humidity, install "Arduino_HTS221", docs https://www.arduino.cc/en/Reference/ArduinoHTS221
-#include <Arduino_APDS9960.h> // Include library for colour, proximity and gesture recognition, install "Arduino_APDS9960", docs https://www.arduino.cc/en/Reference/ArduinoAPDS9960
-
+#include <Arduino_APDS9960.h> // Include library for colour, proximity and gesture recognition, install "Arduino_APDS9960", docs 
 
 unsigned long hasieraf=0;
 unsigned long bukaeraf=0;
@@ -15,7 +14,7 @@ unsigned long hasieral=0;
 unsigned long bukaeral=0;
 int incomingByte = 0; // for incoming serial data
 
-//Sensoren bariablek definittu: 
+//Definición de las variables de sensores:  
 float accel_x, accel_y, accel_z;
 float gyro_x, gyro_y, gyro_z;
 float mag_x, mag_y, mag_z;
@@ -24,12 +23,13 @@ int Proximity;
 
 void setup() 
 {
+  
   Serial.begin(115200); // opens serial port, sets data rate to 9600 bps  
 
-  // LED-a itzali
-   digitalWrite(22, HIGH); // añadido
-   digitalWrite(23, HIGH); // añadido
-   digitalWrite(24, HIGH); // añadido
+  // Apagar luces LED
+     digitalWrite(22, HIGH); // añadido
+     digitalWrite(23, HIGH); // añadido
+     digitalWrite(24, HIGH); // añadido
   
   while (!Serial) {
     ; // wait for serial port to connect
@@ -55,28 +55,28 @@ void setup()
 
 void loop() 
 {
-  // Motorrai bialikoizkion aginduk
-  int speed=0;
-  int steer=0;
+  // Órdenes que le enviaremos al motor
+  int speed=0; // velocidad
+  int steer=0;  // dirección
 
    if (Serial.available() > 0) {
     // read the incoming byte:
-    incomingByte = Serial.read(); //Bialitako komandoa letukou
-   
-
+    incomingByte = Serial.read(); // Lectura de órdenes 
+    
     if (incomingByte == 'f') {  // añadido en lugar de 8
     // Aurrera
     Serial.println("aurrera");
     hasieraf=millis()  ;  
-      for (int i=0; i<=4000; i++){   //4 segungo aurrea
-      digitalWrite(23,LOW);
-      steer=0 ;
-      speed=200 ;
-   //   Comunication(steer,speed);
+    for (int i=0; i<=4000; i++){   //4 segungo aurrea
+    digitalWrite(23,LOW);
+    steer=0 ;
+    speed=200 ;
+   
+  //Comunication(steer,speed);
      
-      Measure();     
+    Measure();     
            
-      delay(1);
+    delay(1);
       }      
       digitalWrite(23,HIGH);
     bukaeraf=millis();
