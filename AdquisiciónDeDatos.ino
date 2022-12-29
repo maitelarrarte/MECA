@@ -3,22 +3,22 @@
 #include <Arduino_APDS9960.h> // Include library for colour, proximity and gesture recognition, install "Arduino_APDS9960", docs https://www.arduino.cc/en/Reference/ArduinoAPDS9960
 
 void setup(){
-  Serial.begin(9600); //Serial monitor to display all sensor values 
+  Serial.begin(9600); //Monitor serie para visualizar todos los valores de los sensores 
   while (!Serial) {
-    ; // wait for serial port to connect
+    ; //Esperar a que se conecte el puerto serie
   }
   
-  if (!IMU.begin()) { // Initialize IMU sensor 
+  if (!IMU.begin()) { // Inicializar el sensor IMU  
    Serial.println("Failed to initialize IMU!");
    while (1);
   }
 
-  if (!BARO.begin()) { //Initialize Pressure Sensor 
+  if (!BARO.begin()) { //Inicializar el sensor de presión
    Serial.println("Failed to initialize Pressure Sensor!");
    while (1);
   }
 
-  if (!APDS.begin()) { // Initialize Colour, Proximity and Gesture sensor 
+  if (!APDS.begin()) { // Inicializar sensores de Color y Proximidad 
     Serial.println("Failed to initialize Colour, Proximity and Gesture Sensor!");
     while (1);
   }
@@ -29,7 +29,7 @@ void setup(){
   // The internal inra-red LED can be increased up to 3 times with APDS.setLEDBoost
 
  }
-
+//Definición de los parámetros de aceleración, giro, campo electromagnético, presión y proximidad
 float accel_x, accel_y, accel_z;
 float gyro_x, gyro_y, gyro_z;
 float mag_x, mag_y, mag_z;
@@ -37,7 +37,7 @@ float Pressure;
 int Proximity;
 
 void loop() {
-  // Accelerometer values 
+  // Valores del acelerometro 
   if (IMU.accelerationAvailable()) {
     IMU.readAcceleration(accel_x, accel_y, accel_z);
     Serial.print(accel_x);
@@ -48,7 +48,7 @@ void loop() {
   }
   // delay (200);
 
-  // Gyroscope values 
+  // Valores del giroscopio 
   if (IMU.gyroscopeAvailable()) {
     IMU.readGyroscope(gyro_x, gyro_y, gyro_z);
     Serial.print(", ");
@@ -59,7 +59,7 @@ void loop() {
     Serial.print(gyro_z);
   }
 
-  // Magnetometer values 
+  // Valores del magnetometro 
   if (IMU.magneticFieldAvailable()) {
     IMU.readMagneticField(mag_x, mag_y, mag_z);
     Serial.print(", ");
@@ -70,51 +70,18 @@ void loop() {
     Serial.print(mag_z);
   }
 
-  // Read Pressure value
+  // leer los valores de presión
   Pressure = BARO.readPressure();
   Serial.print(", ");
   Serial.print(Pressure);
 
-  if (true) { // This function also enables the gesture sensor when called for the first time.
-    //delay (500); // Por si acaso lo dejamos, Mirara si no hace falta!!
-
-    // TODO: Find out how to correctly wait for gestures
-    /*
-    int tries = 50;
-    while(APDS.gestureAvailable() == 0 && tries > 0) {
-      tries--;
-      Serial.print(".");
-      delay(30);
-    }
-    Serial.println("");
-    int gesture = APDS.readGesture();
-    switch (gesture) {
-      case GESTURE_UP:
-        Serial.println("Detected UP gesture");
-        break;
-      case GESTURE_DOWN:
-        Serial.println("Detected DOWN gesture");
-        break;
-      case GESTURE_LEFT:
-        Serial.println("Detected LEFT gesture");
-        break;
-      case GESTURE_RIGHT:
-        Serial.println("Detected RIGHT gesture");
-        break;
-      case GESTURE_NONE:
-        Serial.println("Detected NONE gesture");
-        break;        
-      default:
-        break;
-    }
-    */
-  }
-
-  // Proximity value
+ 
+  //Valores de proximidad
   if (true)
   {
     delay(500);
     int tries= 50;
+    //Repitición hasta obtener algún valor de proximidad
     while(APDS.proximityAvailable() == 0 && tries >0)
     {
       tries--;
@@ -126,13 +93,14 @@ void loop() {
   }
   else
   {
+    //En el caso de no detectar ningún valor de proximidad
     Serial.print(", ");
     Serial.print("Prox = Not Found");
     //Serial.print(0); 
   }
   
   if (true) 
-  { // This function also enables the color sensor when called for the first time.
+  { // Esta función también activa el sensor de color cuando se llama por primera vez.
     delay (500);
     int tries = 50;
     while(APDS.colorAvailable() == 0 && tries > 0) {
@@ -140,7 +108,7 @@ void loop() {
       delay(30);
     }
     int r, g, b, c;
-    // read the color and clear light intensity
+    // leer el color y la intensidad de la luz clara
     APDS.readColor(r, g, b, c);
     Serial.print(", ");
     Serial.print(r);
@@ -150,7 +118,7 @@ void loop() {
     Serial.print(b);
     Serial.print(", ");
     Serial.print(c);
-    // Note: ambient light information can be used to control display color temperature and backlight.
+    // Nota: la información sobre la luz ambiental puede utilizarse para controlar la temperatura de color y la retroiluminación de la pantalla.
   }
 
   Serial.println(""); 
